@@ -215,7 +215,7 @@ extension Shard {
         return
       }
 			let newMember = Member(self.sword, guild, data)
-	  let oldMember = guild.members[oldMember.user.id]
+	  let oldMember = guild.members[newMember.user.id]
 
       self.sword.emit(.guildMemberUpdate, with: (oldMember, newMember))
       oldMember = newMember
