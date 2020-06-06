@@ -214,9 +214,13 @@ extension Shard {
       guard let guild = self.sword.guilds[guildId] else {
         return
       }
-      let member = Member(self.sword, guild, data)
-      guild.members[member.user.id] = member
-      self.sword.emit(.guildMemberUpdate, with: member)
+	  let oldMember = guild.members[oldMember.user.id]
+      let newMember = Member(self.sword, guild, data)
+	
+      self.sword.emit(.guildMemberUpdate, with: (oldMember, newMember))
+      oldMember = newMember
+		
+		print(oldMember, newMember)
 
     /// GUILD_ROLE_CREATE
     case .guildRoleCreate:
